@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI; //needed?
@@ -6,12 +7,12 @@ using UnityEngine.AI; //needed?
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Transform target;
-    [SerializeField] float chaseRange = 20f;
+    [SerializeField] float chaseRange = 5f;
 
     NavMeshAgent navMeshAgent;
 
     float distanceToTarget = Mathf.Infinity; // to prevent enemy from seeing 0 as dtt
-
+    bool isProvoked = false;
 
     void Start()
     {
@@ -21,9 +22,44 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         distanceToTarget = Vector3.Distance(target.position, transform.position);
-        if (distanceToTarget <= chaseRange)
+        if (isProvoked)
         {
-        navMeshAgent.SetDestination(target.position);
+            engageTarget();
+        }
+        else if (distanceToTarget <= chaseRange)
+        {
+            isProvoked = true;
         }
     }
+
+    private void engageTarget()
+    {
+        if (distanceToTarget >= navMeshAgent.stoppingDistance) 
+        {
+            chaseTarget();
+        }
+
+        if (distanceToTarget <= navMeshAgent.stoppingDistance) //if close to target
+        {
+            attackTarget();
+        }
+    }
+
+    private void chaseTarget()
+    {
+        navMeshAgent.SetDestination(target.position);
+    }
+
+
+    private void attackTarget()
+    {
+        Debug.Log(name + " has seeked and is destroying " + target.name);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;// or new Color(1, 1, 0, 0.75F);
+        Gizmos.DrawWireSphere(transform.position, chaseRange); //midpoint, radius
+    }
+
 }
