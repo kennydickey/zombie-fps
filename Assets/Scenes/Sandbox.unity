@@ -766,7 +766,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300048, guid: db63fa1c2adceb141974024b30ffa6db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1190,6 +1190,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1005407762}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &850183626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3130282040849076966, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+    type: 3}
+  m_PrefabInstance: {fileID: 21384070}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &850183627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850183626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c35ec5aea2742dab60e62590d878f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FPCamera: {fileID: 2042610895}
+  range: 100
 --- !u!1001 &1005407762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1934,6 +1954,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 44884af1ac1d64d42902da40268ba120,
     type: 3}
   m_PrefabInstance: {fileID: 283096978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &2042610895 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2000000, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+    type: 3}
+  m_PrefabInstance: {fileID: 21384070}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2051240357 stripped
 Transform:
