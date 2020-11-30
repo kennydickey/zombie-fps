@@ -11,7 +11,7 @@ public class WeaponZoom : MonoBehaviour
     [SerializeField] float zoomOutSensitivity = 2f;
     [SerializeField] float zoomInSensitivity = .5f;
     // [SerializeField] float zoomedinYSensitivity = .5f; more specific
-
+    // UI, deathHandler, broadcastMessage, more looping, weapon zoom and mouseLook sensitivity
 
 
     RigidbodyFirstPersonController fpsController;
