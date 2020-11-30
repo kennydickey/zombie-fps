@@ -20,4 +20,10 @@ public class EnemyAttack : MonoBehaviour
         Debug.Log("bang bamg");
     }
 
+    //for reference of broadcast from EnemyHealth
+    public void OnDamageTaken()
+    {
+        Debug.Log(name + "I also took damage");
+    }
+
 }

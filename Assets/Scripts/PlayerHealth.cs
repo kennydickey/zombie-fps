@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
         if (hitpoints <= 0)
         {
             Debug.Log("p1 is dead");
+            GetComponent<DeathHandler>().HandleDeath();
         }
     }
 }
