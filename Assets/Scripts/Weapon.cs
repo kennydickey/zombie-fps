@@ -11,19 +11,32 @@ public class Weapon : MonoBehaviour
     [SerializeField] float damage = 30f;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitEffect;
+    [SerializeField] Ammo ammoSlot; //places ammo.cs in a serializeFiled in weapon insp
+                                    //furthermore, Ammo.cs is on player so we can monitor ammo amount in player context
+                                    //ammoSlot is Ammo pretty much
+    [SerializeField] float timeBetweenShots = 0.5f;
+
+    bool canShoot = true;
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButtonDown(0) && canShoot)
         {
-            Shoot();
+            StartCoroutine(Shoot());
         }
     }
 
-    private void Shoot()
+    IEnumerator Shoot()
     {
-        PlayMuzzleFlash();
-        ProcessRaycast();
+        canShoot = false; //after coroutine has started
+        if (ammoSlot.GetCurrentAmmo() > 0)
+        {
+            PlayMuzzleFlash();
+            ProcessRaycast();
+            ammoSlot.ReduceCurrentAmmo();
+        }
+        yield return new WaitForSeconds(timeBetweenShots);
+        canShoot = true; //after time specified, firing may continue
     }
 
     private void PlayMuzzleFlash()
