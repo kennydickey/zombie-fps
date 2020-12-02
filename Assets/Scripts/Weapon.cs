@@ -14,9 +14,17 @@ public class Weapon : MonoBehaviour
     [SerializeField] Ammo ammoSlot; //places ammo.cs in a serializeFiled in weapon insp
                                     //furthermore, Ammo.cs is on player so we can monitor ammo amount in player context
                                     //ammoSlot is Ammo pretty much
+    [SerializeField] AmmoType ammoType; //Ammotype is the public enum script we created
+
     [SerializeField] float timeBetweenShots = 0.5f;
 
     bool canShoot = true;
+
+    // imperfectr fix for switching bug
+    private void OnEnable() //when this instance of this class is enabled
+    {
+        canShoot = true;
+    }
 
     void Update()
     {
@@ -29,11 +37,11 @@ public class Weapon : MonoBehaviour
     IEnumerator Shoot()
     {
         canShoot = false; //after coroutine has started
-        if (ammoSlot.GetCurrentAmmo() > 0)
+        if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
             PlayMuzzleFlash();
             ProcessRaycast();
-            ammoSlot.ReduceCurrentAmmo();
+            ammoSlot.ReduceCurrentAmmo(ammoType);
         }
         yield return new WaitForSeconds(timeBetweenShots);
         canShoot = true; //after time specified, firing may continue

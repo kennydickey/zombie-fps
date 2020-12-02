@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-    [SerializeField] int ammoAmount = 10;
+    //general ammo for every weapon
+    //[SerializeField] int ammoAmount = 10;
 
-    public int GetCurrentAmmo()
+    //array of type AmmoSlot called ammoSlots that show in inspector
+    [SerializeField] AmmoSlot[] ammoSlots;
+
+    [System.Serializable] //show content that belongs to this class in inspector
+    //class within a class!
+    private class AmmoSlot //only accesible to ammo
     {
-        return ammoAmount;
+        public AmmoType ammoType; //public and therefore accessible but only by ammo
+        public int ammoAmount;
     }
 
-    public void ReduceCurrentAmmo()
+    // method says: whenever you call me, I need to know what ammo type you're talking about
+    public int GetCurrentAmmo(AmmoType ammoType)
     {
-        ammoAmount --;
+        return GetAmmoSlot(ammoType).ammoAmount;
+    }
+
+    public void ReduceCurrentAmmo(AmmoType ammoType)
+    {
+        GetAmmoSlot(ammoType).ammoAmount--;
+    }
+
+    private AmmoSlot GetAmmoSlot(AmmoType ammoType)
+    {
+        foreach (AmmoSlot slot in ammoSlots)
+        {
+            if (slot.ammoType == ammoType)
+            {
+                return slot;
+            }
+        }
+        //if nothing is returned..
+        return null;
     }
 }
