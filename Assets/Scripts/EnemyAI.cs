@@ -15,13 +15,22 @@ public class EnemyAI : MonoBehaviour
     float distanceToTarget = Mathf.Infinity; // to prevent enemy from seeing 0 as dtt
     bool isProvoked = false;
 
+    EnemyHealth health; //declaring use of enemy health script
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        health = GetComponent<EnemyHealth>(); //
     }
 
     void Update()
     {
+        if (health.IsDead())
+        {
+            //turns off enemy component when dead
+            enabled = false; //this.enabled, the "this" (enemyAI), is implied
+            navMeshAgent.enabled = false; //let navMesh know it is dead and to stop running
+        }
         distanceToTarget = Vector3.Distance(target.position, transform.position);
         if (isProvoked)
         {
