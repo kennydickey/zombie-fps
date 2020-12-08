@@ -6,7 +6,6 @@ using UnityEngine.AI; //needed?
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform target;
     [SerializeField] float chaseRange = 5f;
     [SerializeField] float turnSpeed = 5f;
 
@@ -14,13 +13,16 @@ public class EnemyAI : MonoBehaviour
 
     float distanceToTarget = Mathf.Infinity; // to prevent enemy from seeing 0 as dtt
     bool isProvoked = false;
-
     EnemyHealth health; //declaring use of enemy health script
+    Transform target; //previously a serialized field to drag player into
+
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<EnemyHealth>(); //
+        //find obj that has player health script so enemy can use this to follow
+        target = FindObjectOfType<PlayerHealth>().transform;
     }
 
     void Update()
