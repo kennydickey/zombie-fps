@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 8141065848364055141}
   - component: {fileID: 3175087816891042602}
   - component: {fileID: 3152930482396284529}
+  - component: {fileID: 7948457860737690068}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -178,7 +179,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 3.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11400004
@@ -289,6 +290,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoSlots: []
+--- !u!114 &7948457860737690068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d6ef80773b6c444bb4a369238e12924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactCanvas: {fileID: 0}
+  impactTime: 0.3
 --- !u!1 &2662390252857510391
 GameObject:
   m_ObjectHideFlags: 0

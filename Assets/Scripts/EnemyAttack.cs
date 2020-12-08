@@ -17,11 +17,10 @@ public class EnemyAttack : MonoBehaviour
     {
         if (target == null) return;
         target.TakeDamage(damage);
-        Debug.Log("bang bamg");
+        target.GetComponent<DisplayDamage>().ShowDamageImpact();
     }
-
     //for reference of broadcast from EnemyHealth
-    public void OnDamageTaken()
+        public void OnDamageTaken()
     {
         Debug.Log(name + "I also took damage");
     }
